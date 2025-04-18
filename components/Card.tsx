@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#1A1A1A',
     width: '90%',
-    // height: 100,
     borderRadius: 8,
     margin: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
+    alignItems: 'center',
   },
   name: {
     fontSize: 20,
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   value: {
     color: 'white',
     fontSize: 50,
+    fontWeight: 'bold',
   },
 })
