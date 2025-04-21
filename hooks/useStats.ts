@@ -19,7 +19,7 @@ export function useStats() {
       setLastUpdated(currentDate.toLocaleString())
 
       // Send Dollar Value Notification
-      if (dollar.value < 1001 || dollar.value > 1009) {
+      if (dollar.value < 1001 || dollar.value > 1200) {
         await Notifications.scheduleNotificationAsync({
           content: {
             title: 'Alerta del dólar',
