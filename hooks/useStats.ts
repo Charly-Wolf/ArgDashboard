@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react'
-import { fetchDollar, fetchCountryRisk, Stat } from '../services/api'
+import {
+  fetchDollar,
+  fetchCountryRisk,
+  Stat,
+  fetchMonthlyInflation,
+  fetchAnualInflation,
+} from '../services/api'
 import * as Notifications from 'expo-notifications'
 
 export function useStats() {
@@ -11,8 +17,10 @@ export function useStats() {
     const fetchData = async () => {
       const dollar = await fetchDollar()
       const countryRisk = await fetchCountryRisk()
+      const monthlyInflation = await fetchMonthlyInflation()
+      const anualInflation = await fetchAnualInflation()
 
-      setStats([dollar, countryRisk])
+      setStats([dollar, countryRisk, monthlyInflation, anualInflation])
       setLoading(false)
 
       const currentDate = new Date()

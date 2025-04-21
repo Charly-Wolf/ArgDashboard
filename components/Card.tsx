@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native'
 
 type CardProps = {
   name: string
@@ -8,13 +8,20 @@ type CardProps = {
 }
 
 const Card = ({ name, value, unit, color }: CardProps) => {
+  const handleCardPress = async () => {
+    if (name === 'Dólar oficial') {
+      const url = 'https://onlinebanking.bancogalicia.com.ar/login'
+      Linking.openURL(url)
+    }
+  }
+
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer} onPress={handleCardPress}>
       <Text style={[styles.name, { color: color }]}>{name}</Text>
       <Text style={styles.value}>
         {unit === '$' ? `${unit} ${value}` : `${value} ${unit ? unit : ''}`}
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 export default Card
