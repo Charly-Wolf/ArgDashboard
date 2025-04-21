@@ -7,7 +7,7 @@ export type Stat = {
 
 const API_URL_DOLLAR = 'https://dolarapi.com/v1/dolares/oficial'
 const API_URL_COUNTRY_RISK =
-  'https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais/ultimo/'
+  'https://mercados.ambito.com//riesgopais/variacion-ultimo'
 const API_URL_MONTHLY_INFLATION =
   'https://api.argentinadatos.com/v1/finanzas/indices/inflacion/'
 const API_URL_ANUAL_INFLATION =
@@ -40,7 +40,7 @@ export const fetchCountryRisk = async (): Promise<Stat> => {
 
     return {
       name: 'Riesgo País',
-      value: data.valor,
+      value: data.ultimo,
       color: '#FF5555',
     }
   } catch (error) {

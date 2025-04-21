@@ -9,8 +9,12 @@ type CardProps = {
 
 const Card = ({ name, value, unit, color }: CardProps) => {
   const handleCardPress = async () => {
+    let url
     if (name === 'Dólar oficial') {
-      const url = 'https://onlinebanking.bancogalicia.com.ar/login'
+      url = 'https://www.dolarito.ar/'
+      Linking.openURL(url)
+    } else if (name === 'Riesgo País') {
+      url = 'https://www.rava.com/perfil/riesgo%20pais'
       Linking.openURL(url)
     }
   }
