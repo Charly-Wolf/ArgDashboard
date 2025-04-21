@@ -1,37 +1,42 @@
 import { useEffect, useState } from 'react'
-import { fetchStats } from '@/services/api'
-
-export type Stat = {
-  name: string
-  value: number
-  unit?: string
-  color?: string
-}
+import { fetchDollar, fetchCountryRisk, Stat } from '../services/api'
+import * as Notifications from 'expo-notifications'
 
 export function useStats() {
   const [stats, setStats] = useState<Stat[]>([])
   const [loading, setLoading] = useState(true)
+  const [lastUpdated, setLastUpdated] = useState<string>('')
 
   useEffect(() => {
-    const ws = new WebSocket('ws://192.168.1.38:3000')
+    const fetchData = async () => {
+      const dollar = await fetchDollar()
+      const countryRisk = await fetchCountryRisk()
 
-    ws.onmessage = event => {
-      const data = JSON.parse(event.data)
-      setStats(Object.values(data))
-
-      console.log('Received data:', data)
-
+      setStats([dollar, countryRisk])
       setLoading(false)
+
+      const currentDate = new Date()
+      setLastUpdated(currentDate.toLocaleString())
+
+      // Send Dollar Value Notification
+      if (dollar.value < 1001 || dollar.value > 1009) {
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: 'Alerta del dólar',
+            body: `El valor actual es $${dollar.value}`,
+            sound: true,
+          },
+          trigger: null,
+        })
+      }
     }
 
-    ws.onerror = err => {
-      console.error('WebSocket error:', err)
-    }
+    fetchData()
 
-    return () => {
-      ws.close()
-    }
+    const interval = setInterval(fetchData, 5 * 60000) // every 5 minutes
+
+    return () => clearInterval(interval)
   }, [])
 
-  return { stats, loading }
+  return { stats, loading, lastUpdated }
 }

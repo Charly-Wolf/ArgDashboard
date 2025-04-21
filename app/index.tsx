@@ -5,12 +5,13 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native'
-import stats from '../data/stats'
 import Card from '@/components/Card'
 import { useStats } from '@/hooks/useStats'
+import { usePushNotifications } from '@/hooks/usePushNotifications'
 
 export default function Index() {
-  const { stats, loading } = useStats()
+  usePushNotifications()
+  const { stats, loading, lastUpdated } = useStats()
 
   return (
     <>
@@ -34,6 +35,11 @@ export default function Index() {
           )}
         </View>
       </View>
+      <View style={styles.footerContainer}>
+        <Text style={styles.footerText}>
+          Última actualización: {lastUpdated}
+        </Text>
+      </View>
     </>
   )
 }
@@ -53,5 +59,17 @@ const styles = StyleSheet.create({
   statsContainer: {
     padding: 16,
     alignItems: 'center',
+  },
+  footerContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  footerText: {
+    color: 'white',
+    fontSize: 12,
+    opacity: 0.7,
   },
 })
