@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useStats } from '@/hooks/useStats'
+import { Foundation } from '@expo/vector-icons'
 
 export default function StatsUpdater() {
   const { refresh, lastUpdated, loading } = useStats()
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Última actualización: {lastUpdated}</Text>
       <Pressable
         onPress={refresh}
         disabled={loading}
@@ -16,10 +16,9 @@ export default function StatsUpdater() {
           loading && styles.buttonDisabled,
         ]}
       >
-        <Text style={styles.buttonText}>
-          {loading ? 'Actualizando...' : 'Actualizar'}
-        </Text>
+        <Foundation name='refresh' style={styles.updateIcon} />
       </Pressable>
+      <Text style={styles.text}>Última actualización: {lastUpdated}</Text>
     </View>
   )
 }
@@ -33,22 +32,22 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 12,
     opacity: 0.7,
-    marginBottom: 4,
+    marginVertical: 8,
   },
   button: {
-    backgroundColor: '#1E90FF',
+    backgroundColor: '#4ded8f',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 8,
   },
   buttonPressed: {
-    backgroundColor: '#1C86EE',
+    backgroundColor: '#27ae60',
   },
   buttonDisabled: {
     backgroundColor: '#555',
   },
-  buttonText: {
+  updateIcon: {
     color: 'white',
-    fontWeight: 'bold',
+    fontSize: 24,
   },
 })
