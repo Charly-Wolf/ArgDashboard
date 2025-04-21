@@ -1,8 +1,17 @@
-import { StatusBar, StyleSheet, View, Text } from 'react-native'
+import {
+  StatusBar,
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+} from 'react-native'
 import stats from '../data/stats'
 import Card from '@/components/Card'
+import { useStats } from '@/hooks/useStats'
 
 export default function Index() {
+  const { stats, loading } = useStats()
+
   return (
     <>
       <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
@@ -10,15 +19,19 @@ export default function Index() {
       <View style={styles.rootContainer}>
         <Text style={styles.title}>ArgDashboard</Text>
         <View style={styles.statsContainer}>
-          {stats.map(stat => (
-            <Card
-              key={stat.id}
-              name={stat.name}
-              value={stat.value}
-              unit={stat.unit}
-              color={stat.color}
-            />
-          ))}
+          {loading ? (
+            <ActivityIndicator size='large' color='white' />
+          ) : (
+            stats.map((stat, index) => (
+              <Card
+                key={index} // TODO: replace index by something
+                name={stat.name}
+                value={stat.value}
+                unit={stat.unit}
+                color={stat.color}
+              />
+            ))
+          )}
         </View>
       </View>
     </>

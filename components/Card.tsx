@@ -4,7 +4,7 @@ type CardProps = {
   name: string
   value: number
   unit?: string
-  color: string
+  color?: string
 }
 
 const Card = ({ name, value, unit, color }: CardProps) => {
