@@ -7,10 +7,11 @@ import {
 } from 'react-native'
 import Card from '@/components/Card'
 import { useStats } from '@/hooks/useStats'
-import { usePushNotifications } from '@/hooks/usePushNotifications'
+import StatsUpdater from '@/components/statsUpdater'
+// import { usePushNotifications } from '@/hooks/usePushNotifications'
 
 export default function Index() {
-  usePushNotifications()
+  // usePushNotifications() TODO
   const { stats, loading, lastUpdated } = useStats()
 
   return (
@@ -35,11 +36,12 @@ export default function Index() {
           )}
         </View>
       </View>
-      <View style={styles.footerContainer}>
+      {/* <View style={styles.footerContainer}>
         <Text style={styles.footerText}>
           Última actualización: {lastUpdated}
         </Text>
-      </View>
+      </View> */}
+      <StatsUpdater />
     </>
   )
 }

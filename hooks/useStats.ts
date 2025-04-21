@@ -13,32 +13,32 @@ export function useStats() {
   const [loading, setLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState<string>('')
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const dollar = await fetchDollar()
-      const countryRisk = await fetchCountryRisk()
-      const monthlyInflation = await fetchMonthlyInflation()
-      const anualInflation = await fetchAnualInflation()
+  const fetchData = async () => {
+    const dollar = await fetchDollar()
+    const countryRisk = await fetchCountryRisk()
+    const monthlyInflation = await fetchMonthlyInflation()
+    const anualInflation = await fetchAnualInflation()
 
-      setStats([dollar, countryRisk, monthlyInflation, anualInflation])
-      setLoading(false)
+    setStats([dollar, countryRisk, monthlyInflation, anualInflation])
+    setLoading(false)
 
-      const currentDate = new Date()
-      setLastUpdated(currentDate.toLocaleString())
+    const currentDate = new Date()
+    setLastUpdated(currentDate.toLocaleString())
 
-      // Send Dollar Value Notification
-      if (dollar.value < 1001 || dollar.value > 1200) {
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: 'Alerta del dólar',
-            body: `El valor actual es $${dollar.value}`,
-            sound: true,
-          },
-          trigger: null,
-        })
-      }
+    // Send Dollar Value Notification
+    if (dollar.value < 1001 || dollar.value > 1200) {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Alerta del dólar',
+          body: `El valor actual es $${dollar.value}`,
+          sound: true,
+        },
+        trigger: null,
+      })
     }
+  }
 
+  useEffect(() => {
     fetchData()
 
     const interval = setInterval(fetchData, 5 * 60000) // every 5 minutes
@@ -46,5 +46,5 @@ export function useStats() {
     return () => clearInterval(interval)
   }, [])
 
-  return { stats, loading, lastUpdated }
+  return { stats, loading, lastUpdated, refresh: fetchData }
 }
