@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
   cardContainerWeb: {
     width: '40%',
     margin: 24,
+    maxWidth: 400,
   },
   name: {
     fontSize: 20,
