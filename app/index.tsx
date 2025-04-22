@@ -5,6 +5,7 @@ import {
   Text,
   ActivityIndicator,
   Platform,
+  ScrollView,
 } from 'react-native'
 import Card from '@/components/Card'
 import { useStats } from '@/hooks/useStats'
@@ -22,15 +23,18 @@ export default function Index() {
 
       <View style={styles.rootContainer}>
         <Text style={styles.title}>ArgDashboard</Text>
-        <View
-          style={[styles.statsContainer, isWeb && styles.statsContainerWeb]}
+        <ScrollView
+          contentContainerStyle={[
+            styles.statsContainer,
+            isWeb && styles.statsContainerWeb,
+          ]}
         >
           {loading ? (
             <ActivityIndicator size='large' color='white' />
           ) : (
-            stats.map((stat, index) => (
+            stats.map(stat => (
               <Card
-                key={index} // TODO: replace index by something
+                key={stat.name}
                 name={stat.name}
                 value={stat.value}
                 unit={stat.unit}
@@ -38,13 +42,8 @@ export default function Index() {
               />
             ))
           )}
-        </View>
+        </ScrollView>
       </View>
-      {/* <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>
-          Última actualización: {lastUpdated}
-        </Text>
-      </View> */}
       <StatsUpdater />
     </>
   )
