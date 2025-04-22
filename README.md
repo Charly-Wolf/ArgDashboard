@@ -7,9 +7,7 @@
 - **Dólar oficial**: Muestra el valor actual del dólar oficial de Argentina.
 - **Riesgo País**: Muestra el valor actualizado del riesgo país.
 - **Inflación mensual**: Proporciona la inflación mensual más reciente.
-- **Inflación anual**: Muestra la tasa de inflación interanual.
-- **Notificaciones**: Se envían alertas cuando el valor del dólar alcanza ciertos límites.
-- **Actualización automática**: La información se actualiza cada 5 minutos para asegurar que los datos sean siempre relevantes.
+- **Inflación anual**: Muestra la tasa de inflación interanu- **Actualización automática**: La información se actualiza cada 5 minutos para asegurar que los datos sean siempre relevantes.
 
 ## Tecnologías
 
