@@ -2,6 +2,8 @@
 
 **ArgDashboard** es una aplicación móvil que proporciona información sobre indicadores económicos clave de Argentina, como el valor del **dólar oficial**, el **riesgo país**, y las **tasas de inflación** mensual y anual. La app utiliza datos de APIs externas para mantener la información actualizada cada pocos minutos.
 
+Podés visitar la versión web [aquí](https://argdashboard--preview.expo.app).
+
 ## Características
 
 - **Dólar oficial**: Muestra el valor actual del dólar oficial de Argentina.
