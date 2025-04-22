@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Linking,
+  Platform,
+} from 'react-native'
 
 type CardProps = {
   name: string
@@ -8,19 +15,24 @@ type CardProps = {
 }
 
 const Card = ({ name, value, unit, color }: CardProps) => {
+  const isWeb = Platform.OS === 'web'
+
   const handleCardPress = async () => {
     let url = ''
     if (name === 'Dólar oficial') {
       url = 'https://www.dolarito.ar/'
       Linking.openURL(url)
     } else if (name === 'Riesgo País') {
-      Linking.openURL(url)
       url = 'https://www.rava.com/perfil/riesgo%20pais'
+      Linking.openURL(url)
     }
   }
 
   return (
-    <TouchableOpacity style={styles.cardContainer} onPress={handleCardPress}>
+    <TouchableOpacity
+      style={[styles.cardContainer, isWeb && styles.cardContainerWeb]}
+      onPress={handleCardPress}
+    >
       <Text style={[styles.name, { color: color }]}>{name}</Text>
       <Text style={styles.value}>
         {unit === '$' ? `${unit} ${value}` : `${value} ${unit ? unit : ''}`}
@@ -39,6 +51,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     alignItems: 'center',
+  },
+  cardContainerWeb: {
+    width: '40%',
+    margin: 24,
   },
   name: {
     fontSize: 20,

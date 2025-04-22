@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ActivityIndicator,
+  Platform,
 } from 'react-native'
 import Card from '@/components/Card'
 import { useStats } from '@/hooks/useStats'
@@ -13,6 +14,7 @@ import StatsUpdater from '@/components/statsUpdater'
 export default function Index() {
   // usePushNotifications() TODO
   const { stats, loading, lastUpdated } = useStats()
+  const isWeb = Platform.OS === 'web'
 
   return (
     <>
@@ -20,7 +22,9 @@ export default function Index() {
 
       <View style={styles.rootContainer}>
         <Text style={styles.title}>ArgDashboard</Text>
-        <View style={styles.statsContainer}>
+        <View
+          style={[styles.statsContainer, isWeb && styles.statsContainerWeb]}
+        >
           {loading ? (
             <ActivityIndicator size='large' color='white' />
           ) : (
@@ -61,6 +65,11 @@ const styles = StyleSheet.create({
   statsContainer: {
     padding: 16,
     alignItems: 'center',
+  },
+  statsContainerWeb: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   footerContainer: {
     position: 'absolute',
