@@ -1,6 +1,22 @@
-# Bienvenidos a la App ArgDashboard 👋
+# ArgDashboard
 
-App simple creada con [Expo](https://expo.dev) [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) y usando React Native.
+**ArgDashboard** es una aplicación móvil que proporciona información sobre indicadores económicos clave de Argentina, como el valor del **dólar oficial**, el **riesgo país**, y las **tasas de inflación** mensual y anual. La app utiliza datos de APIs externas para mantener la información actualizada cada pocos minutos.
 
-La App muestra los datos actuales más relevantes de Argentina (cotización del Dolar, inflación, riesgo país, etc.)
+## Características
 
+- **Dólar oficial**: Muestra el valor actual del dólar oficial de Argentina.
+- **Riesgo País**: Muestra el valor actualizado del riesgo país.
+- **Inflación mensual**: Proporciona la inflación mensual más reciente.
+- **Inflación anual**: Muestra la tasa de inflación interanual.
+- **Notificaciones**: Se envían alertas cuando el valor del dólar alcanza ciertos límites.
+- **Actualización automática**: La información se actualiza cada 5 minutos para asegurar que los datos sean siempre relevantes.
+
+## Tecnologías
+
+- **[React Native](https://reactnative.dev/)**: Framework utilizado para desarrollar la app móvil.
+- **[Expo](https://expo.dev)**: Herramienta para facilitar el desarrollo y la compilación de la app.
+- **TypeScript**: Lenguaje de programación para un desarrollo más seguro y mantenible.
+
+---
+
+#### Próximamente en Google Play
