@@ -4,6 +4,8 @@
 
 Podés visitar la versión web [aquí](https://argdashboard--preview.expo.app).
 
+![web app screenshot](image.png)
+
 ## Características
 
 - **Dólar oficial**: Muestra el valor actual del dólar oficial de Argentina.
