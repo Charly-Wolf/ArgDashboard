@@ -1,10 +1,9 @@
 import {
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
   Linking,
-  Platform,
+  useWindowDimensions,
 } from 'react-native'
 
 type CardProps = {
@@ -15,7 +14,8 @@ type CardProps = {
 }
 
 const Card = ({ name, value, unit, color }: CardProps) => {
-  const isWeb = Platform.OS === 'web'
+  const { width } = useWindowDimensions()
+  const isLargeScreen = width > 600
 
   const handleCardPress = async () => {
     let url = ''
@@ -30,7 +30,7 @@ const Card = ({ name, value, unit, color }: CardProps) => {
 
   return (
     <TouchableOpacity
-      style={[styles.cardContainer, isWeb && styles.cardContainerWeb]}
+      style={[styles.cardContainer, isLargeScreen && styles.cardContainerWeb]}
       onPress={handleCardPress}
     >
       <Text style={[styles.name, { color: color }]}>{name}</Text>
